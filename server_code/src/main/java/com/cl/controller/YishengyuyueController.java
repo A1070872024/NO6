@@ -160,6 +160,12 @@ public class YishengyuyueController {
     public R add(@RequestBody YishengyuyueEntity yishengyuyue, HttpServletRequest request){
     	//ValidatorUtils.validateEntity(yishengyuyue);
         yishengyuyueService.insert(yishengyuyue);
+		// 1新建一张通知记录表
+		// 2预约记录保存成功后在通知记录表里新建一条数据，字段有是否发送消息，发送时间等
+		// 3同步发送预约通知给用户
+		// 4发送成功修改通知记录表状态
+		// 5发送失败则不修改状态
+		// 6创建一个定时任务，每隔一分钟扫描通知记录表，发送通知，成功改状态
         return R.ok();
     }
 
